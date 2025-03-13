@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StudiosComponent } from './studios/studios.component';
 import { provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,8 @@ import { provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
