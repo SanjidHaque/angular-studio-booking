@@ -1,0 +1,27 @@
+<div>
+  <table class="">
+    <thead>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Location</th>
+    <th>Amenities List</th>
+    <th>Price Per Hour</th>
+    <th>Rating</th>
+    <th>Action</th>
+    </thead>
+    <tbody>
+      @for (studio of studios; track studio.Id) {
+        <tr>
+          <td>{{ studio?.Name }}</td>
+          <td>{{ studio?.Type }}</td>
+          <td>{{ studio?.Location?.Address }}, {{ studio?.Location?.Area }} {{ studio?.Location?.City }}</td>
+          <td>{{ studio?.Amenities  }}</td>
+          <td>{{ studio?.PricePerHour }} {{studio?.Currency }}</td>
+          <td>{{ studio?.Rating }} star</td>
+          <td><button>Book</button></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
