@@ -1,0 +1,35 @@
+<div style="padding: 10px; text-align: center">
+  <h3>Booking Form</h3>
+  <form [formGroup]="bookingForm">
+    <mat-form-field appearance="outline" >
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>Follow MM/DD/YYYY format</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Pick start time</mat-label>
+      <input matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="startTime" [matTimepicker]="start">
+      <mat-timepicker-toggle matIconSuffix [for]="start"/>
+      <mat-timepicker #start/>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Pick end time</mat-label>
+      <input matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="endTime" [matTimepicker]="end">
+      <mat-timepicker-toggle matIconSuffix [for]="end"/>
+      <mat-timepicker #end/>
+    </mat-form-field>
+  </form>
+
+  <button (click)="submitBooking()">Submit</button>
+
+</div>
