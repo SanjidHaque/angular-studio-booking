@@ -4,27 +4,56 @@
     <mat-form-field appearance="outline" >
       <mat-label>Name</mat-label>
       <input matInput formControlName="name">
+      @if (bookingForm.get('name')?.hasError('required')) {
+        <mat-error>Name is required.</mat-error>
+      }
     </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email">
+      @if (bookingForm.get('email')?.hasError('required')) {
+        <mat-error>Email is required.</mat-error>
+      }
     </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="date">
+      <input matInput [min]="today" [matDatepicker]="picker" formControlName="date">
+
       <mat-hint>Follow MM/DD/YYYY format</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      @if (bookingForm.get('date')?.hasError('required')) {
+        <mat-error>Date is required.</mat-error>
+      }
+      @if (bookingForm.get('date')?.hasError('matDatepickerParse')) {
+        <mat-error>Invalid date.</mat-error>
+      }
+      @if (bookingForm.get('date')?.hasError('matDatepickerMin')) {
+        <mat-error>Past dates are not allowed.</mat-error>
+      }
+      
     </mat-form-field>
-    <mat-form-field appearance="outline">
+
+    <mat-form-field appearance="outline" style="margin: 20px">
       <mat-label>Pick start time</mat-label>
       <input matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="startTime" [matTimepicker]="start">
+      @if (bookingForm.get('startTime')?.hasError('required')) {
+        <mat-error>Start time is required.</mat-error>
+      }
+
+
       <mat-timepicker-toggle matIconSuffix [for]="start"/>
       <mat-timepicker #start/>
     </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>Pick end time</mat-label>
       <input matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="endTime" [matTimepicker]="end">
+      @if (bookingForm.get('startTime')?.hasError('required')) {
+        <mat-error>End time is required.</mat-error>
+      }
       <mat-timepicker-toggle matIconSuffix [for]="end"/>
       <mat-timepicker #end/>
     </mat-form-field>
