@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {FormControl} from '@angular/forms';
 import {debounceTime, filter} from 'rxjs';
 import {StudioService} from './studio.service';
+import {MatDialog} from '@angular/material/dialog';
+import {BookingDialogComponent} from './booking-dialog/booking-dialog.component';
 
 @Component({
   selector: 'app-studios',
@@ -21,7 +23,7 @@ export class StudiosComponent {
 
   endPoint = 'https://gist.githubusercontent.com/rash3dul-islam/88e1565bea2dd1ff9180ff733617a565/raw/684afa147a8e726d7a5e4fdeb390f2d48b35051d/studio-mock-api,json';
 
-  constructor(private http: HttpClient, private studioService: StudioService) {}
+  constructor(private http: HttpClient, private studioService: StudioService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getUserLocation();
@@ -73,5 +75,15 @@ export class StudiosComponent {
         alert(error.message);
       },
     })
+  }
+
+  bookStudio(studio) {
+    const dialogRef = this.dialog.open(
+      BookingDialogComponent,
+      { data: studio, hasBackdrop: true, height: '500px', width: '400px' }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }

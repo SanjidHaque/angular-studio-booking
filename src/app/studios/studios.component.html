@@ -1,4 +1,5 @@
 <div>
+
   <input type="text" [formControl]="searchInput">
   <select (change)="searchByRadius($event.target)" [disabled]="isLocationDenied" >
     <option value="6000">Search by radius</option>
@@ -28,7 +29,7 @@
             <td>{{ studio?.Amenities  }}</td>
             <td>{{ studio?.PricePerHour }} {{studio?.Currency }}</td>
             <td>{{ studio?.Rating }} star</td>
-            <td><button>Book</button></td>
+            <td><button (click)="bookStudio(studio)">Book</button></td>
           </tr>
         }
       </tbody>
