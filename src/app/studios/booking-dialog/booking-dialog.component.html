@@ -38,11 +38,14 @@
 
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="booking-full-width mt-3">
+    <mat-form-field appearance="outline" class="booking-full-width mt-4">
       <mat-label>Pick start time</mat-label>
       <input matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="startTime" [matTimepicker]="start">
       @if (bookingForm.get('startTime')?.hasError('required')) {
         <mat-error>Start time is required.</mat-error>
+      }
+      @if (bookingForm.get('startTime')?.hasError('matTimepickerParse')) {
+        <mat-error>Invalid time.</mat-error>
       }
       @if (bookingForm.get('startTime')?.hasError('matTimepickerMin')) {
         <mat-error>Studio is not operational at this time.</mat-error>
@@ -59,6 +62,9 @@
       <input    matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="endTime" [matTimepicker]="end">
       @if (bookingForm.get('endTime')?.hasError('required')) {
         <mat-error>End time is required.</mat-error>
+      }
+      @if (bookingForm.get('endTime')?.hasError('matTimepickerParse')) {
+        <mat-error>Invalid time.</mat-error>
       }
       @if (bookingForm.get('endTime')?.hasError('matTimepickerMin')) {
         <mat-error>Studio is not operational at this time.</mat-error>
