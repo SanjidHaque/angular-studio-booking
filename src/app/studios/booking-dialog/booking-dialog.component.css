@@ -1,9 +1,13 @@
-/*.example-form {*/
-/*  min-width: 150px;*/
-/*  max-width: 300px;*/
-/*  width: 100%;*/
-/*}*/
+.custom-error-text {
+  display: block;
+  color: #ba1a1a;
+  font-weight: 400;
+  font-size: .75rem;
+  line-height: 20px;
+  margin-top: 4px;
+  font-family: 'Roboto'/* Spacing above the error message */
+}
 
-/*.example-full-width {*/
-/*  width: 100%;*/
-/*}*/
+.custom-error-border {
+  border-color: #ba1a1a!important;
+}

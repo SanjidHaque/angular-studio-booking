@@ -4,6 +4,7 @@
     @if (isBooked) {
       <mat-error>The selected time slot is not available. Please choose another time.</mat-error>
     }
+
     <mat-error></mat-error>
     <mat-form-field appearance="outline" >
       <mat-label>Name</mat-label>
@@ -58,7 +59,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Pick end time</mat-label>
-      <input matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="endTime" [matTimepicker]="end">
+      <input    matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="endTime" [matTimepicker]="end">
       @if (bookingForm.get('endTime')?.hasError('required')) {
         <mat-error>End time is required.</mat-error>
       }
@@ -71,6 +72,12 @@
       <mat-timepicker-toggle matIconSuffix [for]="end"/>
       <mat-timepicker #end/>
     </mat-form-field>
+    @if (bookingForm.invalid  && (bookingForm.touched || bookingForm.dirty)) {
+      @if (bookingForm.hasError('greaterStartTime')) {
+        <mat-error class="custom-error-text">End time cannot be same or less than start time.</mat-error>
+      }
+    }
+
   </form>
 
   <button (click)="submitBooking()">Submit</button>

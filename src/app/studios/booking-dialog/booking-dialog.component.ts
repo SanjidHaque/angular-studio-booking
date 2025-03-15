@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {timeRangeValidator} from '../../shared/custom-validator';
 
 @Component({
   selector: 'app-booking-dialog',
@@ -8,6 +9,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   templateUrl: './booking-dialog.component.html',
   styleUrl: './booking-dialog.component.css'
 })
+
+
 export class BookingDialogComponent {
    dialogRef = inject(MatDialogRef<BookingDialogComponent>);
    data = inject(MAT_DIALOG_DATA);
@@ -26,11 +29,12 @@ export class BookingDialogComponent {
        date: new FormControl(null, Validators.required),
        startTime: new FormControl(null, Validators.required),
        endTime: new FormControl(null, Validators.required)
-     });
+     }, {validators: timeRangeValidator});
    }
 
 
   submitBooking() {
+     console.log(this.bookingForm);
      if (this.bookingForm.invalid) {
        return;
      }
@@ -77,7 +81,6 @@ export class BookingDialogComponent {
     if (matchingDates.length > 0) {
 
       const studio = matchingDates.filter(booking => booking.studioId === this.data.Id);
-
       const isOverlapped = studio.some(booking => {
         // console.log('Booking start time ', new Date(booking.startTime).getTime())
         // console.log('Booking end time ', new Date(booking.endTime).getTime())
@@ -89,10 +92,4 @@ export class BookingDialogComponent {
     return false;
   }
 
-
-
-
-  checkOperationalHours() {
-
-  }
 }
