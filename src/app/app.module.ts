@@ -17,6 +17,7 @@ import {MatTimepickerModule} from '@angular/material/timepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {DatePipe} from '@angular/common';
 import { BookingListComponent } from './booking-list/booking-list.component';
+import { WildCardComponent } from './wild-card/wild-card.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BookingListComponent } from './booking-list/booking-list.component';
     AppComponent,
     StudiosComponent,
     BookingDialogComponent,
-    BookingListComponent
+    BookingListComponent,
+    WildCardComponent
   ],
   imports: [
     BrowserModule,
