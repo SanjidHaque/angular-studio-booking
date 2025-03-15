@@ -10,7 +10,9 @@ export class BookingListComponent {
   bookings= [];
 
   ngOnInit(){
-    this.bookings = JSON.parse(localStorage.getItem('bookings'));
-    console.log(this.bookings);
+    const bookingStorage = JSON.parse(localStorage.getItem('bookings'));
+    if(bookingStorage){
+      this.bookings = bookingStorage;
+    }
   }
 }
