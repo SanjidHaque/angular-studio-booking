@@ -43,6 +43,7 @@ export class BookingDialogComponent {
     const booking = {
       id: crypto.randomUUID(),
       studioId: this.data.Id,
+      studioName: this.data.Name,
       type: this.data.Type,
       location: `${this.data.Location.Area}, ${this.data.Location.City}`,
       name: this.bookingForm.value.name,
@@ -61,12 +62,12 @@ export class BookingDialogComponent {
 
     this.isBooked =  this.checkOverlappingTime(booking.date, booking.startTime, booking.endTime, bookings);
     if (this.isBooked) {
-      return
+      return;
     }
 
     bookings.push(booking);
     localStorage.setItem('bookings', JSON.stringify(bookings));
-
+    this.dialogRef.close({success: true, booking});
   }
 
   checkOverlappingTime(selectedDate, selectedStartTime, selectedEndTime, bookings) {

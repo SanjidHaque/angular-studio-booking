@@ -5,6 +5,7 @@ import {debounceTime, filter} from 'rxjs';
 import {StudioService} from './studio.service';
 import {MatDialog} from '@angular/material/dialog';
 import {BookingDialogComponent} from './booking-dialog/booking-dialog.component';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-studios',
@@ -23,7 +24,10 @@ export class StudiosComponent {
 
   endPoint = 'https://gist.githubusercontent.com/rash3dul-islam/88e1565bea2dd1ff9180ff733617a565/raw/684afa147a8e726d7a5e4fdeb390f2d48b35051d/studio-mock-api,json';
 
-  constructor(private http: HttpClient, private studioService: StudioService, private dialog: MatDialog) { }
+  constructor(private http: HttpClient,
+              private datePipe: DatePipe,
+              private studioService: StudioService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getUserLocation();
@@ -83,7 +87,14 @@ export class StudiosComponent {
       { data: studio, hasBackdrop: true, height: '600px', width: '450px', autoFocus: false},
     );
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (!result)
+        return;
+
+      const date = this.datePipe.transform(result.booking.date, 'dd-MM-yyyy');
+      const startTime = this.datePipe.transform(result.booking.startTime, 'hh:mm a');
+      const endTime = this.datePipe.transform(result.booking.endTime, 'hh:mm a');
+      const message = `Booking confirms at ${result.booking.studioName} on ${date} from ${startTime} to ${endTime}`;
+      alert(message);
     });
   }
 }

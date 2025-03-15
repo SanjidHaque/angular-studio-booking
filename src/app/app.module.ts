@@ -15,6 +15,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTimepickerModule} from '@angular/material/timepicker';
 
 import {provideNativeDateAdapter} from '@angular/material/core';
+import {DatePipe} from '@angular/common';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
     MatDatepickerModule,
     MatTimepickerModule
   ],
-  providers: [provideHttpClient(withInterceptorsFromDi()), provideNativeDateAdapter()],
+  providers: [provideHttpClient(withInterceptorsFromDi()), provideNativeDateAdapter(), DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
