@@ -11,3 +11,13 @@
 .custom-error-border {
   border-color: #ba1a1a!important;
 }
+
+.booking-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.booking-full-width {
+  width: 100%;
+}

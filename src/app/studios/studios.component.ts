@@ -84,7 +84,7 @@ export class StudiosComponent {
   bookStudio(studio) {
     const dialogRef = this.dialog.open(
       BookingDialogComponent,
-      { data: studio, hasBackdrop: true, height: '600px', width: '450px', autoFocus: false},
+      { data: studio, hasBackdrop: true, height: '650', width: '500px', autoFocus: false},
     );
     dialogRef.afterClosed().subscribe(result => {
       if (!result)
