@@ -16,13 +16,15 @@ import {MatTimepickerModule} from '@angular/material/timepicker';
 
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {DatePipe} from '@angular/common';
+import { BookingListComponent } from './booking-list/booking-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StudiosComponent,
-    BookingDialogComponent
+    BookingDialogComponent,
+    BookingListComponent
   ],
   imports: [
     BrowserModule,

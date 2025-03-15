@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {AppComponent} from './app.component';
 import {StudiosComponent} from './studios/studios.component';
+import {BookingListComponent} from './booking-list/booking-list.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'studios',
+    pathMatch: 'full',
+  },
+  {
+    path: 'studios',
     component: StudiosComponent,
+  },
+  {
+    path: 'bookings',
+    component: BookingListComponent,
   }
 ];
 
