@@ -80,7 +80,7 @@ export class StudiosComponent {
   bookStudio(studio) {
     const dialogRef = this.dialog.open(
       BookingDialogComponent,
-      { data: studio, hasBackdrop: true, height: '500px', width: '400px' }
+      { data: studio, hasBackdrop: true, height: '600px', width: '450px' }
     );
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

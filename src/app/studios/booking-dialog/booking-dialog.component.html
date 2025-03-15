@@ -1,6 +1,10 @@
 <div style="padding: 10px; text-align: center">
   <h3>Booking Form</h3>
   <form [formGroup]="bookingForm">
+    @if (isBooked) {
+      <mat-error>The selected time slot is not available. Please choose another time.</mat-error>
+    }
+    <mat-error></mat-error>
     <mat-form-field appearance="outline" >
       <mat-label>Name</mat-label>
       <input matInput formControlName="name">
@@ -33,7 +37,7 @@
       @if (bookingForm.get('date')?.hasError('matDatepickerMin')) {
         <mat-error>Past dates are not allowed.</mat-error>
       }
-      
+
     </mat-form-field>
 
     <mat-form-field appearance="outline" style="margin: 20px">
@@ -42,8 +46,12 @@
       @if (bookingForm.get('startTime')?.hasError('required')) {
         <mat-error>Start time is required.</mat-error>
       }
-
-
+      @if (bookingForm.get('startTime')?.hasError('matTimepickerMin')) {
+        <mat-error>Studio is not operational at this time.</mat-error>
+      }
+      @if (bookingForm.get('startTime')?.hasError('matTimepickerMax')) {
+        <mat-error>Studio is not operational at this time.</mat-error>
+      }
       <mat-timepicker-toggle matIconSuffix [for]="start"/>
       <mat-timepicker #start/>
     </mat-form-field>
@@ -51,8 +59,14 @@
     <mat-form-field appearance="outline">
       <mat-label>Pick end time</mat-label>
       <input matInput [matTimepickerMin]="openingHour" [matTimepickerMax]="closingHour" formControlName="endTime" [matTimepicker]="end">
-      @if (bookingForm.get('startTime')?.hasError('required')) {
+      @if (bookingForm.get('endTime')?.hasError('required')) {
         <mat-error>End time is required.</mat-error>
+      }
+      @if (bookingForm.get('endTime')?.hasError('matTimepickerMin')) {
+        <mat-error>Studio is not operational at this time.</mat-error>
+      }
+      @if (bookingForm.get('endTime')?.hasError('matTimepickerMax')) {
+        <mat-error>Studio is not operational at this time.</mat-error>
       }
       <mat-timepicker-toggle matIconSuffix [for]="end"/>
       <mat-timepicker #end/>
