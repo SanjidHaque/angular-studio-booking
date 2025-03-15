@@ -1,28 +1,38 @@
-@if (bookings.length > 0) {
-  <table class="">
-    <thead>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Studio</th>
-    <th>Type</th>
-    <th>Location</th>
-    <th>Date</th>
-    <th>Time</th>
-    </thead>
-    <tbody>
-      @for (booking of bookings; track booking.Id) {
-        <tr>
-          <td>{{ booking?.name }}</td>
-          <td>{{ booking?.email }}</td>
-          <td>{{ booking?.studioName }}</td>
-          <td>{{ booking?.type }}</td>
-          <td> {{ booking?.location }}</td>
-          <td>{{ booking?.date | date:'dd-MM-yyyy' }}</td>
-          <td>{{ booking?.startTime | date:'hh:mm a' }} to {{ booking?.endTime | date:'hh:mm a' }}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-} @else {
-  <p>No bookings found</p>
-}
+<div class="row">
+  <div class="col-12">
+
+    @if (bookings.length > 0) {
+      <div class="table-responsive">
+        <table class="table-light table-bordered table-hover w-100">
+          <thead class="text-center">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Studio</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Time</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (booking of bookings; track booking.Id) {
+              <tr class="text-center">
+                <td>{{ booking?.name }}</td>
+                <td>{{ booking?.email }}</td>
+                <td>{{ booking?.studioName }}</td>
+                <td>{{ booking?.type }}</td>
+                <td>{{ booking?.location }}</td>
+                <td>{{ booking?.date | date:'dd-MM-yyyy' }}</td>
+                <td>{{ booking?.startTime | date:'hh:mm a' }} to {{ booking?.endTime | date:'hh:mm a' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="text-center text-muted mt-3">No bookings found</p>
+    }
+  </div>
+</div>
+

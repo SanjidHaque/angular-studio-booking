@@ -1,42 +1,53 @@
-<div>
+<div class="row">
+  <div class="col">
 
-  <input type="text" [formControl]="searchInput">
-  <select (change)="searchByRadius($event.target)" [disabled]="isLocationDenied" >
-    <option value="6000">Search by radius</option>
-    <option value="5">5 KM</option>
-    <option value="10">10 KM</option>
-    <option value="20">20 KM</option>
-  </select>
+    <p class="display-6">Studios</p>
 
-  <p>Total: {{ studios.length }}</p>
-  @if (studios.length > 0) {
-    <table class="">
-      <thead>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Location</th>
-      <th>Amenities List</th>
-      <th>Price Per Hour</th>
-      <th>Rating</th>
-      <th>Action</th>
-      </thead>
-      <tbody>
-        @for (studio of studios; track studio.Id) {
-          <tr>
-            <td>{{ studio?.Name }}</td>
-            <td>{{ studio?.Type }}</td>
-            <td>{{ studio?.Location?.Address }} - {{ studio?.Location?.Area }} - {{ studio?.Location?.City }}</td>
-            <td>{{ studio?.Amenities  }}</td>
-            <td>{{ studio?.PricePerHour }} {{studio?.Currency }}</td>
-            <td>{{ studio?.Rating }} star</td>
-            <td><button (click)="bookStudio(studio)">Book</button></td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  } @else {
-    <p>No results found</p>
-  }
+    <div class="d-flex align-items-center gap-2">
+      <input type="text" class="form-control w-50" placeholder="Search by City/Area" [formControl]="searchInput">
 
+      <select class="form-select w-auto" (change)="searchByRadius($event.target)" [disabled]="isLocationDenied">
+        <option value="6000">Search by radius</option>
+        <option value="5">5 KM</option>
+        <option value="10">10 KM</option>
+        <option value="20">20 KM</option>
+      </select>
+    </div>
+
+
+
+    <p class="py-3">Total: {{ studios.length }}</p>
+    @if (studios.length > 0) {
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover w-100">
+          <thead class="text-center">
+            <th>Name</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Amenities List</th>
+            <th>Price Per Hour</th>
+            <th>Rating</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            @for (studio of studios; track studio.Id) {
+              <tr>
+                <td>{{ studio?.Name }}</td>
+                <td>{{ studio?.Type }}</td>
+                <td>{{ studio?.Location?.Address }} - {{ studio?.Location?.Area }} - {{ studio?.Location?.City }}</td>
+                <td>{{ studio?.Amenities  }}</td>
+                <td>{{ studio?.PricePerHour }} {{studio?.Currency }}</td>
+                <td>{{ studio?.Rating }} star</td>
+                <td><button class="btn btn-sm btn-primary" (click)="bookStudio(studio)">Book</button></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+    } @else {
+      <p class="text-center text-muted mt-3">No results found</p>
+    }
+  </div>
 </div>
 
