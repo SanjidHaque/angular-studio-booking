@@ -21,13 +21,15 @@
       <div class="table-responsive">
         <table class="table table-bordered table-hover w-100">
           <thead class="text-center">
-            <th>Name</th>
-            <th>Type</th>
-            <th>Location</th>
-            <th>Amenities List</th>
-            <th>Price Per Hour</th>
-            <th>Rating</th>
-            <th>Action</th>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Amenities List</th>
+              <th>Price Per Hour</th>
+              <th>Rating</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             @for (studio of studios; track studio.Id) {

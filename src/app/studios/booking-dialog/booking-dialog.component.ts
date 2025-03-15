@@ -54,7 +54,7 @@ export class BookingDialogComponent {
     };
 
 
-    let bookings = []
+    let bookings = [];
     const bookingStorage = localStorage.getItem('bookings');
     if (bookingStorage) {
       bookings = JSON.parse(bookingStorage);
@@ -74,8 +74,6 @@ export class BookingDialogComponent {
     selectedStartTime = new Date(selectedStartTime).getTime();
     selectedEndTime = new Date(selectedEndTime).getTime();
 
-    // console.log('Selected start time ', selectedStartTime);
-    // console.log('Selected end time ', selectedEndTime);
 
     const matchingDates = bookings.filter(booking =>
       new Date(booking.date).toDateString() === new Date(selectedDate).toDateString() );
@@ -83,8 +81,6 @@ export class BookingDialogComponent {
 
       const studio = matchingDates.filter(booking => booking.studioId === this.data.Id);
       const isOverlapped = studio.some(booking => {
-        // console.log('Booking start time ', new Date(booking.startTime).getTime())
-        // console.log('Booking end time ', new Date(booking.endTime).getTime())
          return (selectedStartTime >= new Date(booking.startTime).getTime() && selectedStartTime < new Date(booking.endTime).getTime()) ||
            new Date(booking.startTime).getTime() > selectedStartTime  && new Date(booking.startTime).getTime() < selectedEndTime
       });
