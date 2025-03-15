@@ -14,13 +14,14 @@
       </select>
     </div>
 
-
-
-    <p class="py-3">Total: {{ studios.length }}</p>
-    @if (studios.length > 0) {
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover w-100">
-          <thead class="text-center">
+    @if (isLoading) {
+      <p class="text-center text-muted mt-3">Loading...</p>
+    } @else {
+      <p class="py-3">Total: {{ studios.length }}</p>
+      @if (studios.length > 0) {
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover w-100">
+            <thead class="text-center">
             <tr>
               <th>Name</th>
               <th>Type</th>
@@ -30,26 +31,28 @@
               <th>Rating</th>
               <th>Action</th>
             </tr>
-          </thead>
-          <tbody>
-            @for (studio of studios; track studio.Id) {
-              <tr>
-                <td>{{ studio?.Name }}</td>
-                <td>{{ studio?.Type }}</td>
-                <td>{{ studio?.Location?.Address }} - {{ studio?.Location?.Area }} - {{ studio?.Location?.City }}</td>
-                <td>{{ studio?.Amenities  }}</td>
-                <td>{{ studio?.PricePerHour }} {{studio?.Currency }}</td>
-                <td>{{ studio?.Rating }} star</td>
-                <td><button class="btn btn-sm btn-primary" (click)="bookStudio(studio)">Book</button></td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              @for (studio of studios; track studio.Id) {
+                <tr>
+                  <td>{{ studio?.Name }}</td>
+                  <td>{{ studio?.Type }}</td>
+                  <td>{{ studio?.Location?.Address }} - {{ studio?.Location?.Area }} - {{ studio?.Location?.City }}</td>
+                  <td>{{ studio?.Amenities  }}</td>
+                  <td>{{ studio?.PricePerHour }} {{studio?.Currency }}</td>
+                  <td>{{ studio?.Rating }} star</td>
+                  <td><button class="btn btn-sm btn-primary" (click)="bookStudio(studio)">Book</button></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
 
-    } @else {
-      <p class="text-center text-muted mt-3">No results found</p>
+      } @else {
+        <p class="text-center text-muted mt-3">No results found</p>
+      }
     }
+    
   </div>
 </div>
 
