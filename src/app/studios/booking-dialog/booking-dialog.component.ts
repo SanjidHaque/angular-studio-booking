@@ -34,8 +34,8 @@ export class BookingDialogComponent {
 
 
   submitBooking() {
-     console.log(this.bookingForm);
      if (this.bookingForm.invalid) {
+       this.bookingForm.markAllAsTouched();
        return;
      }
     this.isBooked = false;
